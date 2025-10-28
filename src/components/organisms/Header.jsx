@@ -1,14 +1,15 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useCart } from "@/hooks/useCart";
+import { useAuth } from "@/layouts/Root";
+import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
 import SearchBar from "@/components/molecules/SearchBar";
-import ApperIcon from "@/components/ApperIcon";
-import { useCart } from "@/hooks/useCart";
-
 const Header = () => {
   const navigate = useNavigate();
   const { getCartItemCount } = useCart();
+  const { logout } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const cartItemCount = getCartItemCount();
@@ -134,9 +135,8 @@ const Header = () => {
                   {item.name}
                 </Link>
 ))}
-              <button
+<button
                 onClick={() => {
-                  const { logout } = require("@/layouts/Root").useAuth();
                   logout();
                 }}
                 className="text-gray-700 hover:text-primary transition-colors"
