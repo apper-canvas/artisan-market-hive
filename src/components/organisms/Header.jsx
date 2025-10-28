@@ -133,7 +133,16 @@ const Header = () => {
                 >
                   {item.name}
                 </Link>
-              ))}
+))}
+              <button
+                onClick={() => {
+                  const { logout } = require("@/layouts/Root").useAuth();
+                  logout();
+                }}
+                className="text-gray-700 hover:text-primary transition-colors"
+              >
+                Logout
+              </button>
             </div>
           </motion.div>
         )}
